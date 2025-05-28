@@ -7,8 +7,13 @@ const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 app.use(cors({
-  origin: "*"
-}));app.use(express.json());
+  origin: "https://game-cart-frontend.vercel.app", // allow only your frontend
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+
+app.use(express.json());
 
 app.use("/api", authRoutes);
 app.get("/", (req,res) => {
